@@ -3,10 +3,11 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Pokedex from './pages/Pokedex';
+import Pokedex from './pages/Pokedex.jsx';
 import PokemonList from './pages/PokemonList';
 import About from './pages/About';
 import PokemonDetail from './pages/PokemonDetail';
+import { Toaster } from './components/ui/toaster';
 
 /**
  * Main App component that sets up the application
@@ -31,6 +32,7 @@ function App() {
           </Routes>
         </main>
         <Footer />
+        <Toaster />
       </div>
     </BrowserRouter>
   );
