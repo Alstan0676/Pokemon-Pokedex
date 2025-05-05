@@ -2,7 +2,7 @@
 import { 
   useToast as useToastInternal,
   toast as toastInternal
-} from "@/components/ui/toast";
+} from "@/components/ui/use-toast";
 
 /**
  * Custom hook to use toast functionality
