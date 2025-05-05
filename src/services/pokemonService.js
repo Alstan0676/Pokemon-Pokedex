@@ -1,17 +1,34 @@
 
+/**
+ * Search for a Pokémon by name or ID
+ * 
+ * @param {string} query - The name or ID of the Pokémon to search for
+ * @returns {Promise<Object>} Pokémon data from the API
+ * @throws {Error} If the Pokémon is not found
+ */
 export const searchPokemon = async (query) => {
+  // Make API request to PokeAPI
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${query.toLowerCase().trim()}`);
   
+  // Throw error if Pokémon not found
   if (!response.ok) {
     throw new Error('Pokémon not found');
   }
   
+  // Parse and return the JSON response
   return await response.json();
 };
 
+/**
+ * Fetch detailed information about a specific Pokémon
+ * 
+ * @param {string|number} id - The ID or name of the Pokémon
+ * @returns {Promise<Object>} Detailed Pokémon data including description and habitat
+ * @throws {Error} If the data cannot be fetched
+ */
 export const fetchPokemonDetails = async (id) => {
   try {
-    // Fetch basic Pokemon data
+    // Fetch basic Pokémon data
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
     if (!response.ok) throw new Error('Pokémon not found');
     const data = await response.json();
@@ -21,11 +38,12 @@ export const fetchPokemonDetails = async (id) => {
     if (!speciesResponse.ok) throw new Error('Species data not found');
     const speciesData = await speciesResponse.json();
     
-    // Get English flavor text
+    // Find the English description text
     const englishEntry = speciesData.flavor_text_entries.find(
       entry => entry.language.name === 'en'
     );
     
+    // Compile all the data into a single object
     const pokemonData = {
       id: data.id,
       name: data.name,
@@ -41,6 +59,7 @@ export const fetchPokemonDetails = async (id) => {
         name: stat.stat.name,
         value: stat.base_stat
       })),
+      // Clean up the description text by replacing form feed characters
       description: englishEntry ? englishEntry.flavor_text.replace(/\f/g, ' ') : 'No description available',
       habitat: speciesData.habitat ? speciesData.habitat.name : 'Unknown',
       genus: speciesData.genera.find(g => g.language.name === 'en')?.genus || '',
@@ -53,12 +72,20 @@ export const fetchPokemonDetails = async (id) => {
   }
 };
 
+/**
+ * Fetch the evolution chain for a Pokémon
+ * 
+ * @param {string} url - The URL to the evolution chain data
+ * @returns {Promise<Array>} Array of Pokémon in the evolution chain
+ */
 export const fetchEvolutionChain = async (url) => {
   try {
+    // Fetch evolution chain data
     const response = await fetch(url);
     if (!response.ok) throw new Error('Evolution data not found');
     const data = await response.json();
     
+    // Array to store evolution chain
     const evoChain = [];
     let currentEvo = data.chain;
     
@@ -66,6 +93,7 @@ export const fetchEvolutionChain = async (url) => {
     const speciesUrl = currentEvo.species.url;
     const speciesId = speciesUrl.split('/').filter(Boolean).pop();
     
+    // Add first evolution to chain
     evoChain.push({
       id: speciesId,
       name: currentEvo.species.name,
@@ -80,9 +108,11 @@ export const fetchEvolutionChain = async (url) => {
       const nextEvo = currentEvo.evolves_to[0];
       const evolutionDetails = nextEvo.evolution_details[0];
       
+      // Extract the species ID from the URL
       const nextSpeciesUrl = nextEvo.species.url;
       const nextSpeciesId = nextSpeciesUrl.split('/').filter(Boolean).pop();
       
+      // Add evolution to the chain
       evoChain.push({
         id: nextSpeciesId,
         name: nextEvo.species.name,
@@ -91,6 +121,7 @@ export const fetchEvolutionChain = async (url) => {
         item: evolutionDetails.item?.name
       });
       
+      // Move to the next evolution in the chain
       currentEvo = nextEvo;
     }
     
@@ -98,6 +129,7 @@ export const fetchEvolutionChain = async (url) => {
     const evolutionWithImages = await Promise.all(
       evoChain.map(async (evo) => {
         try {
+          // Get the Pokémon data to extract the image
           const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${evo.id}`);
           const data = await response.json();
           return {

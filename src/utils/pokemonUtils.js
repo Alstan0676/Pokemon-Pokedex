@@ -1,7 +1,18 @@
 
-// Utility functions for Pokemon data
+/**
+ * Utility functions for Pokémon data
+ * These helper functions provide consistent styling and data formatting
+ * for Pokémon throughout the application
+ */
 
+/**
+ * Get the background color class for a Pokémon type
+ * 
+ * @param {string} type - The Pokémon type (e.g., "fire", "water")
+ * @returns {string} Tailwind CSS class for background color
+ */
 export const getTypeColor = (type) => {
+  // Map of Pokémon types to Tailwind background color classes
   const typeColors = {
     normal: 'bg-gray-400',
     fire: 'bg-red-500',
@@ -23,10 +34,19 @@ export const getTypeColor = (type) => {
     fairy: 'bg-pink-300',
   };
   
+  // Return the color class or a default if the type doesn't have a mapping
   return typeColors[type] || 'bg-gray-500';
 };
 
+/**
+ * Get the gradient background classes for a Pokémon type
+ * Used for creating gradient backgrounds in header sections
+ * 
+ * @param {string} type - The Pokémon type (e.g., "fire", "water")
+ * @returns {string} Tailwind CSS classes for gradient background
+ */
 export const getTypeBackground = (type) => {
+  // Map of Pokémon types to gradient background classes
   const typeBackgrounds = {
     normal: 'from-gray-300 to-gray-400',
     fire: 'from-red-400 to-red-500',
@@ -48,18 +68,31 @@ export const getTypeBackground = (type) => {
     fairy: 'from-pink-200 to-pink-300',
   };
   
+  // Return the gradient classes or a default if the type doesn't have a mapping
   return typeBackgrounds[type] || 'from-gray-400 to-gray-500';
 };
 
+/**
+ * Format raw Pokémon data from the API into a consistent format for our app
+ * 
+ * @param {Object} data - Raw Pokémon data from PokeAPI
+ * @returns {Object} Formatted Pokémon data
+ */
 export const formatPokemonData = (data) => {
   return {
     id: data.id,
     name: data.name,
+    // Try to get the high-quality artwork first, fallback to sprite
     image: data.sprites.other["official-artwork"].front_default || data.sprites.front_default,
+    // Extract type names from the types array
     types: data.types.map(type => type.type.name),
-    height: data.height / 10, // convert to meters
-    weight: data.weight / 10, // convert to kg
+    // Convert height from decimeters to meters
+    height: data.height / 10, 
+    // Convert weight from hectograms to kilograms
+    weight: data.weight / 10, 
+    // Extract ability names from the abilities array
     abilities: data.abilities.map(ability => ability.ability.name),
+    // Extract stats with name and value
     stats: data.stats.map(stat => ({
       name: stat.stat.name,
       value: stat.base_stat
