@@ -1,12 +1,17 @@
-import type { Config } from "tailwindcss";
 
+/**
+ * Tailwind CSS configuration
+ * - Defines theme settings, plugins, and content sources
+ * - Sets up dark mode and container defaults
+ * - Extends the default theme with custom colors and animations
+ */
 export default {
 	darkMode: ["class"],
 	content: [
-		"./pages/**/*.{ts,tsx}",
-		"./components/**/*.{ts,tsx}",
-		"./app/**/*.{ts,tsx}",
-		"./src/**/*.{ts,tsx}",
+		"./pages/**/*.{js,jsx}",
+		"./components/**/*.{js,jsx}",
+		"./app/**/*.{js,jsx}",
+		"./src/**/*.{js,jsx}",
 	],
 	prefix: "",
 	theme: {
@@ -93,4 +98,4 @@ export default {
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
-} satisfies Config;
+};

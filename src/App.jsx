@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,17 +7,29 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
+// Create a new query client for React Query
 const queryClient = new QueryClient();
 
+/**
+ * Main App component that sets up the application
+ * - Provides Query Client for data fetching
+ * - Sets up Tooltip Provider for UI tooltips
+ * - Configures Toast notifications
+ * - Establishes routing with React Router
+ */
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      {/* Toast notification components */}
       <Toaster />
       <Sonner />
+      
+      {/* Router setup with routes */}
       <BrowserRouter>
         <Routes>
+          {/* Main landing page route */}
           <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          {/* Catch-all route for handling 404 errors */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

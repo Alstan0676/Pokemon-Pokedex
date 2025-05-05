@@ -1,5 +1,9 @@
-// Update this page (the content is just a fallback if you fail to update the page)
 
+/**
+ * Main Index page component
+ * - Serves as the landing page for the application
+ * - Displays a welcome message and instructions
+ */
 const Index = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
