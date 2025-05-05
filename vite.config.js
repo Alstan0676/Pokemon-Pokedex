@@ -6,9 +6,9 @@ import { componentTagger } from "lovable-tagger";
 
 /**
  * Vite configuration
- * - Sets up server options
+ * - Sets up server options for hosting and port
  * - Configures plugins for React and development tools
- * - Establishes path aliases for imports
+ * - Establishes path aliases for imports to make them cleaner
  */
 export default defineConfig(({ mode }) => ({
   server: {

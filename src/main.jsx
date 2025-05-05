@@ -7,5 +7,6 @@ import './index.css'
  * Main entry point of the application
  * - Creates a React root in the 'root' DOM element
  * - Renders the App component inside this root
+ * - This is where the React application starts rendering
  */
 createRoot(document.getElementById("root")).render(<App />);

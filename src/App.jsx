@@ -12,10 +12,12 @@ const queryClient = new QueryClient();
 
 /**
  * Main App component that sets up the application
- * - Provides Query Client for data fetching
+ * - Provides Query Client for data fetching and state management
  * - Sets up Tooltip Provider for UI tooltips
- * - Configures Toast notifications
+ * - Configures Toast notifications through multiple providers
  * - Establishes routing with React Router
+ * 
+ * @returns {JSX.Element} The main application component
  */
 const App = () => (
   <QueryClientProvider client={queryClient}>
