@@ -25,8 +25,9 @@ const Footer = () => {
         </div>
       </div>
       <div className="bg-gray-800 text-white text-center py-4 text-sm">
-        <p>© {new Date().getFullYear()} Pokédex App. All Rights Reserved.</p>
+        <p>2025 Pokédex App. All Rights Reserved by Nintendo.</p>
         <p className="text-xs mt-1 text-gray-400">Pokémon and Pokémon character names are trademarks of Nintendo.</p>
+        <p className="text-xs mt-1 text-gray-400">This website is created solely for project and educational purposes. No copyright infringement intended.</p>
       </div>
     </footer>
   );
