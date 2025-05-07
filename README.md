@@ -1,73 +1,74 @@
-# Welcome to your Lovable project
+# Pokémon Pokédex
 
-## Project info
+A modern, user-friendly Pokédex application built with React that allows you to explore and learn about Pokémon. This project is perfect for beginners learning React and modern web development.
 
-**URL**: https://lovable.dev/projects/b1e57b90-d458-420d-9344-ecfb9477dbe0
+## Features
 
-## How can I edit this code?
+- 🔍 Search for Pokémon by name or ID
+- 📱 Responsive design that works on all devices
+- 🎨 Beautiful UI with Pokémon type-based color schemes
+- 📊 Detailed Pokémon information including stats, abilities, and types
+- 🔄 Evolution chain visualization
+- 📝 Recent searches history
 
-There are several ways of editing your application.
+## Getting Started
 
-**Use Lovable**
+### Prerequisites
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/b1e57b90-d458-420d-9344-ecfb9477dbe0) and start prompting.
+- Node.js (version 14 or higher)
+- npm (comes with Node.js)
 
-Changes made via Lovable will be committed automatically to this repo.
+### Installation
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
+1. Clone the repository:
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+git clone <repository-url>
+cd pokemon-pokedex
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+2. Install dependencies:
+```sh
+npm install
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Start the development server:
+```sh
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+4. Open your browser and visit `http://localhost:5173`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Project Structure
 
-**Use GitHub Codespaces**
+```
+src/
+├── components/     # Reusable UI components
+├── pages/         # Page components
+├── utils/         # Utility functions
+├── services/      # API services
+├── hooks/         # Custom React hooks
+└── lib/           # Library configurations
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Technologies Used
 
-## What technologies are used for this project?
+- [React](https://react.dev/) - Frontend library
+- [Vite](https://vitejs.dev/) - Build tool and development server
+- [React Router](https://reactrouter.com/) - Navigation
+- [Tailwind CSS](https://tailwindcss.com/docs) - Styling
+- [Radix UI](https://www.radix-ui.com/) - Accessible UI components
+- [Lucide Icons](https://lucide.dev/) - Beautiful icons
 
-This project is built with:
+## Learning Resources
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- [React Documentation](https://reactjs.org/docs/getting-started.html)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [PokéAPI Documentation](https://pokeapi.co/docs/v2)
 
-## How can I deploy this project?
+## Contributing
 
-Simply open [Lovable](https://lovable.dev/projects/b1e57b90-d458-420d-9344-ecfb9477dbe0) and click on Share -> Publish.
+Feel free to submit issues and enhancement requests!
 
-## Can I connect a custom domain to my Lovable project?
+## License
 
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+This project is open source and available under the [MIT License](LICENSE).

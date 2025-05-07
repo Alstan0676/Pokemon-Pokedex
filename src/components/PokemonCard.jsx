@@ -1,47 +1,54 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { getTypeColor, getTypeBackground } from '../utils/pokemonUtils';
 
 /**
- * PokemonCard component displays a card with Pokemon information
+ * PokemonCard Component
  * 
- * This component shows a summary of a Pokémon including its image,
- * name, types, and basic stats. It also provides a link to the
- * detail page for the Pokémon.
+ * A reusable card component that displays information about a Pokémon.
+ * This component is used in both the Pokémon list and search results.
  * 
- * @param {Object} props - Component props
- * @param {Object} props.pokemon - Pokémon data object
- * @returns {JSX.Element|null} The rendered card or null if no data
+ * Props:
+ * @param {Object} pokemon - The Pokémon data object containing all information
+ * @param {number} pokemon.id - The Pokémon's ID number
+ * @param {string} pokemon.name - The Pokémon's name
+ * @param {string} pokemon.image - URL to the Pokémon's image
+ * @param {string[]} pokemon.types - Array of the Pokémon's types
+ * @param {number} pokemon.height - The Pokémon's height in meters
+ * @param {number} pokemon.weight - The Pokémon's weight in kilograms
+ * @param {string[]} pokemon.abilities - Array of the Pokémon's abilities
+ * @param {Object[]} pokemon.stats - Array of the Pokémon's base stats
+ * 
+ * @returns {JSX.Element} A card displaying the Pokémon's information
  */
 const PokemonCard = ({ pokemon }) => {
-  // Don't render anything if no Pokemon data is provided
+  // Early return if no Pokémon data is provided
   if (!pokemon) return null;
 
-  // Get the first type to use for the background gradient
+  // Get the primary type for the background gradient
   const primaryType = pokemon.types[0];
   const gradientClass = getTypeBackground(primaryType);
 
   return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-      {/* Colored header with Pokemon image */}
+    <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+      {/* Header section with Pokémon image */}
       <div className={`bg-gradient-to-b ${gradientClass} p-8 flex justify-center`}>
         <img 
           src={pokemon.image} 
-          alt={pokemon.name}
-          className="h-48 w-48 object-contain drop-shadow-lg" 
+          alt={`${pokemon.name} artwork`}
+          className="h-48 w-48 object-contain drop-shadow-lg hover:scale-105 transition-transform duration-300" 
         />
       </div>
       
+      {/* Content section with Pokémon details */}
       <div className="p-6">
-        {/* Pokemon name and ID header */}
+        {/* Name and ID section */}
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-2xl font-bold capitalize">{pokemon.name}</h2>
-          {/* Format ID to have leading zeros */}
           <span className="text-lg text-gray-500">#{pokemon.id.toString().padStart(3, '0')}</span>
         </div>
         
-        {/* Pokemon types displayed as colored badges */}
+        {/* Types section */}
         <div className="flex flex-wrap gap-2 mb-4">
           {pokemon.types.map(type => (
             <span 
@@ -53,7 +60,7 @@ const PokemonCard = ({ pokemon }) => {
           ))}
         </div>
         
-        {/* Basic stats in a grid layout */}
+        {/* Basic info section */}
         <div className="grid grid-cols-2 gap-4 mb-6">
           <div>
             <h3 className="text-sm text-gray-500 mb-1">Height</h3>
@@ -69,7 +76,7 @@ const PokemonCard = ({ pokemon }) => {
           </div>
         </div>
         
-        {/* Base stats with visual bars */}
+        {/* Base stats section */}
         <div className="space-y-3">
           <h3 className="text-lg font-semibold mb-2">Base Stats</h3>
           {pokemon.stats.map(stat => (
@@ -82,7 +89,7 @@ const PokemonCard = ({ pokemon }) => {
               {/* Visual stat bar */}
               <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                 <div 
-                  className="h-full bg-primary rounded-full"
+                  className="h-full bg-primary rounded-full transition-all duration-300"
                   style={{ width: `${Math.min(100, (stat.value / 255) * 100)}%` }}
                 ></div>
               </div>
@@ -90,11 +97,11 @@ const PokemonCard = ({ pokemon }) => {
           ))}
         </div>
         
-        {/* Link to detailed page */}
+        {/* View details button */}
         <div className="mt-6">
           <Link 
             to={`/pokemon/${pokemon.id}`}
-            className="inline-block w-full text-center bg-primary text-white py-3 rounded-lg font-medium hover:bg-red-700 transition-colors"
+            className="inline-block w-full text-center bg-primary text-white py-3 rounded-lg font-medium hover:bg-red-700 transition-colors duration-300"
           >
             View Details
           </Link>

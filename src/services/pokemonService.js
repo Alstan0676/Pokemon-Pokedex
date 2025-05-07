@@ -6,6 +6,8 @@
  * @returns {Promise<Object>} Pokémon data from the API
  * @throws {Error} If the Pokémon is not found
  */
+
+
 export const searchPokemon = async (query) => {
   // Make API request to PokeAPI
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${query.toLowerCase().trim()}`);
@@ -26,6 +28,9 @@ export const searchPokemon = async (query) => {
  * @returns {Promise<Object>} Detailed Pokémon data including description and habitat
  * @throws {Error} If the data cannot be fetched
  */
+
+
+
 export const fetchPokemonDetails = async (id) => {
   try {
     // Fetch basic Pokémon data
